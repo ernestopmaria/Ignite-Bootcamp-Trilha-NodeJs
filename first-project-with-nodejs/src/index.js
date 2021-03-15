@@ -19,6 +19,18 @@ function verifyIfExixtsAccountCPF(request, response, next) {
     return next();
 }
 
+function getBalance(statement){
+    const balance = statement.reduce((acc, operation)=>{
+        if(operation.type==="credit"){
+            return(acc + operation.amount)
+        }else{
+            return(acc - operation.amount)
+        }
+    }, 0)
+
+    return balance;
+}
+
 
 app.post("/account", async (request, response) => {
     const { cpf, name } = request.body;
@@ -30,7 +42,7 @@ app.post("/account", async (request, response) => {
         cpf,
         name,
         id: uuidv4(),
-        statemant: []
+        statement: []
     })
 
     return response.status(201).send()
@@ -45,18 +57,48 @@ app.get("/statement", verifyIfExixtsAccountCPF, (request, response) => {
 
 app.post("/deposit", verifyIfExixtsAccountCPF, (request, response) => {
     const { description, amount } = request.body;
-
     const { customer } = request;
-
     const statementOperation = {
         description,
         amount,
         created_at: new Date(),
-        type: "Credit"
+        type: "credit"
     }
-    customer.statemant.push(statementOperation);
+    customer.statement.push(statementOperation);
     return response.status(201).send();
 })
 
+app.post("/withdraw",verifyIfExixtsAccountCPF ,(request, response)=>{
+    const { amount} = request.body;
+    const {customer} =request
+
+    const balance = getBalance(customer.statement);
+
+    if(balance < amount){
+        return response.status(400).json({error:"Insuficient founds!"})
+    }
+
+    const statementOperation = {
+        amount,
+        created_at: new Date(),
+        type: "debit"
+    }
+    customer.statement.push(statementOperation);
+    return response.status(201).send();
+    
+    
+})
+
+app.get("/statement/date", verifyIfExixtsAccountCPF, (request, response)=>{
+    const {customer} = request;
+    const {date} = request.query;
+
+    const dateFormat = new Date(date + " 00:00");
+    const statement = customer.statement.filter((statement)=>
+        statement.created_at.toDateString()=== new Date(dateFormat).toDateString()
+    )
+    return response.json(statement)
+})  
+
 app.listen(3333,
-    console.log("server started 1"))
+    console.log("server started "))
