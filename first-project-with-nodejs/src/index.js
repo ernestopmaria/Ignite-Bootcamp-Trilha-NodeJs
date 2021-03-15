@@ -1,3 +1,4 @@
+const { request, response } = require("express");
 const express = require("express");
 const { v4: uuidv4 } = require("uuid")
 
@@ -39,7 +40,22 @@ app.post("/account", async (request, response) => {
 app.get("/statement", verifyIfExixtsAccountCPF, (request, response) => {
 
     const { customer } = request;
-    return response.json(customer.statemant)
+    return response.json(customer)
+})
+
+app.post("/deposit", verifyIfExixtsAccountCPF, (request, response) => {
+    const { description, amount } = request.body;
+
+    const { customer } = request;
+
+    const statementOperation = {
+        description,
+        amount,
+        created_at: new Date(),
+        type: "Credit"
+    }
+    customer.statemant.push(statementOperation);
+    return response.status(201).send();
 })
 
 app.listen(3333,
