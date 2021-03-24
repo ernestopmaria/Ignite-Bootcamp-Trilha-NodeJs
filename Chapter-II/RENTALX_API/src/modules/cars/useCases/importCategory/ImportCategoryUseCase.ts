@@ -7,7 +7,11 @@ class ImportCategoryUseCase {
         const stream = fs.createReadStream(file.path);
 
         const parseFile = csvParser()
-        stream.pipe(parseFile)
+        stream.pipe(parseFile);
+
+        parseFile.on("data", async (line) => {
+            console.log(line)
+        })
     }
 }
 
