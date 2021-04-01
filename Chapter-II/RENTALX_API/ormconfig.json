@@ -6,7 +6,7 @@
     "password": "root",
     "database": "rentx",
     "entities": [
-        "src/modules/cars/entities/.ts"
+        "./src/modules/cars/entities/*ts"
     ],
     "migrations": [
         "./src/database/migrations/**/*.ts"

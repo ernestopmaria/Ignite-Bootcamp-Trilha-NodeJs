@@ -3,7 +3,7 @@ import { CreateCategoryController } from "../createCategory/CreateCategoryContro
 import { CreateCategoryUseCase } from "../createCategory/CreateCategoryUseCase";
 
 
-const specificationRepository = new SpecificationsRepository()
+const specificationRepository = null
 const createSpecificationUseCase = new CreateCategoryUseCase(specificationRepository);
 const createSpecificationController = new CreateCategoryController(createSpecificationUseCase)
 
