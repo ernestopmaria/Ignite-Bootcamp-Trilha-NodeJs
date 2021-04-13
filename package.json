@@ -1,0 +1,8 @@
+{
+  "name": "Ignite-Bootcamp-Trilha-NodeJs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/ernestopmaria/Ignite-Bootcamp-Trilha-NodeJs.git",
+  "author": "Ernesto Maria <58423237+ernestopmaria@users.noreply.github.com>",
+  "license": "MIT"
+}
