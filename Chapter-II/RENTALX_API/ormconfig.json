@@ -3,7 +3,7 @@
     "port": 5432,
     "host": "localhost",
     "username": "postgres",
-    "password": "root",
+    "password": "ignite",
     "database": "rentx",
     "migrations": [
         "./src/database/migrations/*.ts"
