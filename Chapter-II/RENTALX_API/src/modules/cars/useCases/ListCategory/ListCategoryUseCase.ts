@@ -15,4 +15,4 @@ class ListCategoryUseCase {
     }
 }
 
-export { ListCategoryUseCase }
+export  {ListCategoryUseCase} 
