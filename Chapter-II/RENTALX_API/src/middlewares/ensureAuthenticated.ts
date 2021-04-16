@@ -6,10 +6,6 @@ import { UsersRepository } from "../modules/accounts/repositories/implementation
 interface IPayload {
     sub: string
 }
-interface IRequest{
-    request:Request
-}
-
 
 export async function ensureAuthenticated(request: Request,
     response: Response, next: NextFunction) {
@@ -25,9 +21,9 @@ export async function ensureAuthenticated(request: Request,
         if (!user) {
             throw new AppError("User does not exist", 401)
         }
-        const user ={
+        request.user ={
             id:user_id
-        }:IRequest
+        }
         next()
     } catch {
         throw new AppError("invalid token", 401)
