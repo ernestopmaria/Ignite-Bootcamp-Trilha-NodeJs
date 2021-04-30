@@ -1,7 +1,6 @@
 # Cadastro de Carro #
 **Requisitos funcionais** => RF
 -Deve ser possível cadastrar um novo carro
--Deve ser possivel listar todas as categorias
 
 **Requisitos não funcionais** => RNF
 -Não há
