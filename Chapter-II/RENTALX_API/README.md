@@ -6,9 +6,8 @@
 -Não há
 **Regra de Negocio** => RN
 -Não deve ser possível cadastrar um carro com a placa ja existente.
--Não deve ser possível alterar a placa de um carro ja cadastrado
 -O carro deve ser cadastrado com a disponibilidade ja disponível
-Só os usuarios com permissões de admin podem cadastrar carros
+*Só os usuarios com permissões de admin podem cadastrar carros
 
 --------------------------------------------------------------------------------
 # Listagem de carros
