@@ -1,3 +1,4 @@
+import { inject, injectable } from "tsyringe";
 import { Car } from "../../infra/typeorm/entities/Car";
 import { ICarsRepository } from "../../repositories/ICarsRepository"
 
@@ -6,9 +7,11 @@ interface IRequest{
   brand?:string;
   name?:string;
 }
-
-class ListCarsUseCase {
-  constructor(private carsRepository:ICarsRepository){
+@injectable()
+class ListAvailableCarsUseCase {
+  constructor(
+    @inject("CarsRepository")
+    private carsRepository:ICarsRepository){
 
   }
 
@@ -17,4 +20,4 @@ class ListCarsUseCase {
     return cars
   }
 }
-export {ListCarsUseCase}
+export {ListAvailableCarsUseCase}

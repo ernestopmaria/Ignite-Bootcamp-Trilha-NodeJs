@@ -22,8 +22,7 @@ O usuário não precisa estar logado no sistema para ver os carros disponíveis
 # cadastro de especificação de carro
 **RF**
 Deve ser possível cadastrar uma especificação para um carro
-Deve ser possivel listar todas as especificações 
-Deve ser possivel listar todos os carros com 
+
  **RN**
  Não deve ser possível cadastrar uma especificação para 1 carro nao cadastrado
  Não deve ser possivel cadastrar uma especificação já existente para o mesmo carro
