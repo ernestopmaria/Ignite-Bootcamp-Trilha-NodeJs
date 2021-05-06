@@ -33,8 +33,12 @@ describe("Create car specification", ()=>{
       fine_amount:500,
       license_plate:"LD-73-91-GA"
     })
+    const specification = await specificationsRepositoryInMemory.create({
+      description:"test",
+      name:"test"
+    })
 
-    const specifications_id=["54321"]
+    const specifications_id=[specification.id]
     await createCarSpecificationUseCase.execute({
       specifications_id,
       car_id:car.id})
