@@ -49,4 +49,5 @@ deve ser possivel cadastrar aluguel
 **RN**
 o aluguel deve ter duração minima de 24hrs
 não deve ser possivel cadastrar um novo aluguel caso exista um aberto para o mesmo carro.
+o usuario deve estar logado na aplicação
 
