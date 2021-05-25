@@ -2,6 +2,7 @@ import { inject } from "tsyringe";
 import { IDateProvider } from "../../../../shared/container/providers/DateProvider/IDateProvider";
 import { AppError } from "../../../../shared/errors/AppError";
 import { ICarsRepository } from "../../../cars/repositories/ICarsRepository";
+import { Rental } from "../../infra/typeorm/entities/Rental";
 import { IRentalsRepository } from "../../repositories/IRentalsRepository";
 
 
@@ -20,7 +21,7 @@ class DevolutionRentalUsecase{
     private dateProvider:IDateProvider,
     ){}
 
-    async execute({id, user_id}:IRequest){
+    async execute({id, user_id}:IRequest):Promise<Rental>{
       const rental = await this.rentalsRepository.findById(id)
       const car = await this.carsRepository.findById(id)
       const minimum_Daily =1
