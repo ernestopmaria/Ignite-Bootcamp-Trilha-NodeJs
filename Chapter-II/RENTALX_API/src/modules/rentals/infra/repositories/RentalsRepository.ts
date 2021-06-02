@@ -34,7 +34,7 @@ class RentalsRepository implements IRentalsRepository{
         end_date,
         total,
     })
-    const rental = this.repository.create({
+   rental = this.repository.create({
       car_id,
        expected_return_date,
         user_id,
