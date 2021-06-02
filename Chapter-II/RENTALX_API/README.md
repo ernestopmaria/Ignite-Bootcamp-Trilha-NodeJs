@@ -52,3 +52,12 @@ não deve ser possivel cadastrar um novo aluguel caso exista um aberto para o me
 o usuario deve estar logado na aplicação
 Ao realizar o aluguel do carro, o carro deve estar indisponível 
 
+
+# Listagem de Alugueis para usuario
+
+**RF**
+Deve ser possivel realizar a busca de todos os alugueis para o usuario
+
+**RN**
+O usuário deve estar logado na aplicação
+
