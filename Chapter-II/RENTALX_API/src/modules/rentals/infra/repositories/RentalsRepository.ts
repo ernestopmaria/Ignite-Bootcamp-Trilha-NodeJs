@@ -32,7 +32,15 @@ class RentalsRepository implements IRentalsRepository{
         user_id,
         id,
         end_date,
-        total
+        total,
+    })
+    const rental = this.repository.create({
+      car_id,
+       expected_return_date,
+        user_id,
+        id,
+        end_date,
+        total,
     })
     await this.repository.save(rental)
     return rental;
@@ -47,6 +55,7 @@ class RentalsRepository implements IRentalsRepository{
     const rental = await this.repository.find({
       where:{user_id},
       relations:["car"]
+    
     })
 
     return rental
