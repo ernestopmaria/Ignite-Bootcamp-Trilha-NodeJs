@@ -59,7 +59,7 @@
                 "description": "List all categories",
                 "responses": {
                     "200": {
-                        "description": "sucess",
+                        "description": "success",
                         "content": {
                             "application/json": {
                                 "schema": {
