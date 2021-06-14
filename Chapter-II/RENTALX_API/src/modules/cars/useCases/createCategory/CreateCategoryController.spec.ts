@@ -34,7 +34,7 @@ await connection.query(
     const {token}= responseToken.body
     const response = await request(app).post("/categories").send(
       {
-        name: "Category Supertest2",
+        name: "Category Supertest3",
         description:"Category Supertest"
       }).set({
         Authorization:`Bearer ${token}`
@@ -50,7 +50,7 @@ await connection.query(
     const {token}= responseToken.body
     const response = await request(app).post("/categories").send(
       {
-        name: "Category Supertest2",
+        name: "Category Supertest3",
         description:"Category Supertest"
       }).set({
         Authorization:`Bearer ${token}`

@@ -13,11 +13,11 @@ getConnectionOptions().then(options => {
 });  */
 
 createConnection()
-export default async( host:"localhost",):Promise<Connection>=>{
+export default async():Promise<Connection>=>{
   const defaultOptions = await getConnectionOptions();
   return createConnection(
     Object.assign(defaultOptions,{
-      host,
+      host:"localhost",
       database: process.env.NODE_ENV ==='test' ? 'rentx_test': defaultOptions.database
     })
   )
