@@ -1,5 +1,5 @@
 import { sign, verify } from "jsonwebtoken";
-import { inject } from "tsyringe";
+import { inject, injectable } from "tsyringe";
 import auth from "../../../../config/auth";
 import { IDateProvider } from "../../../../shared/container/providers/DateProvider/IDateProvider";
 import { AppError } from "../../../../shared/errors/AppError";
@@ -11,6 +11,7 @@ interface IPayload{
   email:string
 }
 
+@injectable()
 class RefreshTokenUseCase{
   constructor(
     @inject("UsersTokensRepository")
@@ -20,7 +21,7 @@ class RefreshTokenUseCase{
 ) { }
  
 
-  async execute(token:string){
+  async execute(token:string):Promise<string>{
     const {email, sub} = verify(token,auth.secret_refresh_token) as IPayload;
     const user_id = sub
 

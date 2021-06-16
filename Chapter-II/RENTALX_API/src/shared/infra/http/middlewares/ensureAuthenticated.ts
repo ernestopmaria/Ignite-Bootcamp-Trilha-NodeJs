@@ -2,6 +2,8 @@ import { NextFunction, Request, Response } from "express";
 import { verify } from 'jsonwebtoken'
 import { AppError } from "../../../errors/AppError";
 import { UsersRepository } from "../../../../modules/accounts/infra/typeorm/repositories/UsersRepository";
+import { UsersTokensRepository } from "../../../../modules/accounts/infra/typeorm/repositories/UsersTokensRepository";
+import auth from "../../../../config/auth";
 
 interface IPayload {
     sub: string
@@ -10,14 +12,15 @@ interface IPayload {
 export async function ensureAuthenticated(request: Request,
     response: Response, next: NextFunction) {
     const authHeader = request.headers.authorization;
+    const userTokenRepository = new UsersTokensRepository();
     if (!authHeader) {
         throw new AppError("Token missing", 401)
     }
     const [, token] = authHeader.split(" ")
     try {
-        const { sub: user_id } = verify(token, "86e679041d7ad8bc167d96ef2540e054") as IPayload
-        const userRepository = new UsersRepository()
-        const user = await userRepository.findById(user_id)
+        const { sub: user_id } = verify(token, auth.secret_refresh_token) as IPayload
+        
+        const user = await userTokenRepository.findByUserIdAndRefreshToken(user_id,token)
         if (!user) {
             throw new AppError("User does not exist", 401)
         }

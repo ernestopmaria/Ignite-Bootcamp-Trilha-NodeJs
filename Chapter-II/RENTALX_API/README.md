@@ -61,3 +61,13 @@ Deve ser possivel realizar a busca de todos os alugueis para o usuario
 **RN**
 O usuário deve estar logado na aplicação
 
+# Recuperar Senha
+**RF**
+-Deve ser possivel o usuario recuperar a senha informando o email
+-O usuario deve receber um e-mail com o passo a passo para recuperação da senha
+-O usuario deve conseguir inserir uma nova senha
+
+**RN** 
+-O usuario precisa informar uma nova senha
+-O link enviado para recuperação deve expirar dentro de 3horas 
+
