@@ -22,3 +22,4 @@ container.registerSingleton<ICarsRepository>("CarsRepository", CarsRepository)
 container.registerSingleton<ICarsImagesRepository>("CarsImagesRepository", CarsImageRepository)
 container.registerSingleton<IRentalsRepository>("RentalsRepository", RentalsRepository)
 container.registerSingleton<IUsersTokensRepository>("UsersTokensRepository", UsersTokensRepository)
+
