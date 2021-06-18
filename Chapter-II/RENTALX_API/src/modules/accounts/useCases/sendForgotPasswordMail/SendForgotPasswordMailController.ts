@@ -8,7 +8,7 @@ async handle(request:Request, response:Response):Promise<Response>{
   const sendForgotPasswordMailUseCase = container.resolve(SendForgotPasswordMailUseCase)
 
   await sendForgotPasswordMailUseCase.execute(email)
-  return response.send()
+  return response.status(200).send()
 }
 }
 
