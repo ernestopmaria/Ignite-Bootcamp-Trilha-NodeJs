@@ -1,5 +1,7 @@
 import { injectable } from "tsyringe";
-import nodemailer, { Transporter } from 'nodemailer'
+import nodemailer, { Transporter } from 'nodemailer';
+import handlebars from 'handlebars'
+import fs from 'fs'
 import { IMailProvider } from "../IMailProvider";
 
 @injectable()
@@ -20,13 +22,15 @@ class EtherealMailProvider implements IMailProvider{
     }).catch(err=> console.error(err))
   }
   
-  async sendMail(to: string, subject: string, body: string): Promise<void> {
+  async sendMail(to: string, subject: string, variables:any, path:string): Promise<void> {
+    const templateFileContent= fs.readFileSync(path).toString("utf-8");
+    const templateParse = handlebars.compile(templateFileContent);
+    const templateHTML = templateParse(variables)
     const message = await this.client.sendMail({
       from: 'RentalX <noreplay@rentalx.com>',
       to,
-      subject: 'Nodemailer is unicode friendly ✔',
-      text: body,
-      html:body
+      subject,
+      html:templateHTML
     });
     console.log('Message sent: %s', message.messageId);
     // Preview only available when sending through an Ethereal account

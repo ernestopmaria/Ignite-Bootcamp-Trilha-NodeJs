@@ -1,5 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { v4 as uuidV4} from 'uuid';
+import {resolve} from "path"
 import { IDateProvider } from "../../../../shared/container/providers/DateProvider/IDateProvider";
 import { IMailProvider } from "../../../../shared/container/providers/MailProvider/IMailProvider";
 import { AppError } from "../../../../shared/errors/AppError";
