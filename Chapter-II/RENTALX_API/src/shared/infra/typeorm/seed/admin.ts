@@ -4,7 +4,7 @@ import  createConnection from '../index'
 
 
 async function create() {
-  const connection = createConnection("localhost")
+  const connection = createConnection()
   const id = uuidV4();
   const password = await hash("admin",8)
  await (await connection).query(
