@@ -31,13 +31,13 @@ await connection.query(
       email:"ernestomaria@gmail.com",
       password:"admin"
     })
-    const {token}= responseToken.body
+    const {refresh_token}= responseToken.body
     const response = await request(app).post("/categories").send(
       {
         name: "Category Supertest3",
         description:"Category Supertest"
       }).set({
-        Authorization:`Bearer ${token}`
+        Authorization:`Bearer ${refresh_token}`
       });
     expect(response.status).toBe(201);
   })
@@ -47,13 +47,13 @@ await connection.query(
       email:"ernestomaria@gmail.com",
       password:"admin"
     })
-    const {token}= responseToken.body
+    const {refresh_token}= responseToken.body
     const response = await request(app).post("/categories").send(
       {
         name: "Category Supertest3",
         description:"Category Supertest"
       }).set({
-        Authorization:`Bearer ${token}`
+        Authorization:`Bearer ${refresh_token}`
       });
     expect(response.status).toBe(400);
   })

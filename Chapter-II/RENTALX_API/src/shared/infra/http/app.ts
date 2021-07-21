@@ -1,5 +1,6 @@
 import 'reflect-metadata'
 import express, { NextFunction, Request, Response } from "express";
+import 'express-async-errors'
 import createConnection from '../typeorm'
 import '../../container'
 import swagguerUi from 'swagger-ui-express'

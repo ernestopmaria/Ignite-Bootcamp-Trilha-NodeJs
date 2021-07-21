@@ -4,8 +4,9 @@ import { inject, injectable } from "tsyringe";
 import auth from '../../../../config/auth';
 import { IDateProvider } from '../../../../shared/container/providers/DateProvider/IDateProvider';
 import { AppError } from '../../../../shared/errors/AppError';
-import { IUsersRepository } from "../../repositories/IUsersRepository";
-import { IUsersTokensRepository } from '../../repositories/IUsersTokensRepository';
+import { IUsersRepository } from '../../infra/repositories/IUsersRepository';
+import { IUsersTokensRepository } from '../../infra/repositories/IUsersTokensRepository';
+
 
 
 interface IRequest {

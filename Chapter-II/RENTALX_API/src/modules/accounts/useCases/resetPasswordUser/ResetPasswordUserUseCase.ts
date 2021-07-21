@@ -1,10 +1,10 @@
 import { hash } from "bcryptjs";
-import { response } from "express";
 import { inject, injectable } from "tsyringe";
 import { IDateProvider } from "../../../../shared/container/providers/DateProvider/IDateProvider";
 import { AppError } from "../../../../shared/errors/AppError";
-import { IUsersRepository } from "../../repositories/IUsersRepository";
-import { IUsersTokensRepository } from "../../repositories/IUsersTokensRepository";
+import { IUsersRepository } from "../../infra/repositories/IUsersRepository";
+import { IUsersTokensRepository } from "../../infra/repositories/IUsersTokensRepository";
+
 
 interface IRequest{
     token:string;
@@ -32,7 +32,7 @@ class ResetPasswordUserUseCase{
             throw new AppError("Invalid expired")
         }
         const user = await this.usersRepository.findById(userToken.user_id)
-        user.password =await hash(password, 8)
+        user.password = await hash(password, 8)
 
         await this.usersRepository.create(user)
 
