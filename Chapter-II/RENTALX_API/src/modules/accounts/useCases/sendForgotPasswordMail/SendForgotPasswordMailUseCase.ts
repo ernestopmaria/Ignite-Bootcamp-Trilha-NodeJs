@@ -20,7 +20,7 @@ class SendForgotPasswordMailUseCase{
     private usersTokensRepository:IUsersTokensRepository,
     @inject("DayjsDateProvider")
     private dateProvider:IDateProvider,
-    @inject("EtherealMailProvider")
+    @inject("MailProvider")
     private mailProvider:IMailProvider
 
   ){}
@@ -44,7 +44,7 @@ class SendForgotPasswordMailUseCase{
     
     }
 
-    await this.mailProvider.sendMail(email, " Recuperação de senha",variables,templatePath,)
+    await this.mailProvider.sendMail(email, " Recuperação de senha",variables,templatePath)
 
   }
 }
