@@ -13,7 +13,7 @@ const mailProvider ={
   ses: container.resolve(SESMailProvider)
 }
  
-container.registerInstance<IMailProvider>(
+container.registerInstance<IMailProvider>( 
   "MailProvider",
   mailProvider[process.env.MAIL_PROVIDER]
 )
