@@ -4,6 +4,8 @@ import 'express-async-errors'
 import createConnection from '../typeorm'
 import '../../container'
 import swagguerUi from 'swagger-ui-express'
+import * as Sentry from "@sentry/node";
+import * as Tracing from "@sentry/tracing";
 import { router } from "./routes";
 import swaggerFile from '../../../swagger.json'
 import { AppError } from '../../errors/AppError';
@@ -13,17 +15,35 @@ import rateLimiter from './middlewares/rateLimiter';
 
 createConnection()
 const app = express()
-app.use(rateLimiter)
 
+app.use(rateLimiter)
+Sentry.init({
+    dsn: process.env.SENTRY_DSN,
+    integrations: [
+      new Sentry.Integrations.Http({ tracing: true }),
+      new Tracing.Integrations.Express({ app }),
+    ],
+    tracesSampleRate: 1.0,
+  });
+
+  app.use(Sentry.Handlers.requestHandler());
+  app.use(Sentry.Handlers.tracingHandler());
 app.use(express.json())
+
+
+
 app.use("/api-docs", swagguerUi.serve, swagguerUi.setup(swaggerFile)) 
 app.use("/avatar", express.static(`${upload.tmpFolder}/avatar`))
-app.use("/cars", express.static(`${upload.tmpFolder}/cars`))
+app.use("/cars", express.static(`${upload.tmpFolder}/cars`)) 
+
+app.use
 app.use(router)
+
 app.use((err:Error, request:Request, response:Response, next:NextFunction)=>{
     if(err instanceof AppError){
         return response.status(err.statusCode).json({
             message:err.message})
+            
     }
     return response.status(500).json({
         status:"error",
