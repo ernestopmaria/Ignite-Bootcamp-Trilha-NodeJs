@@ -8,10 +8,13 @@ import { router } from "./routes";
 import swaggerFile from '../../../swagger.json'
 import { AppError } from '../../errors/AppError';
 import upload from '../../../config/upload';
+import rateLimiter from './middlewares/rateLimiter';
 
 
 createConnection()
 const app = express()
+app.use(rateLimiter)
+
 app.use(express.json())
 app.use("/api-docs", swagguerUi.serve, swagguerUi.setup(swaggerFile)) 
 app.use("/avatar", express.static(`${upload.tmpFolder}/avatar`))
