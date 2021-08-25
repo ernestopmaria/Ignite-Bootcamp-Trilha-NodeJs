@@ -1,14 +1,15 @@
 
 
 
-export const handle =(event) =>{
-    return{
+export const handle = async (event) =>{
+    console.log("Chegou agui")
+    return {
         statusCode: 201,
-        body:{
-            message: "Hello World Ignite Serverless",
-        },
-        headers:{
-            "Content-Type": "application/json",
+        body:JSON.stringify( {
+         message: "Hello World Ignite Serverless",
+        }),
+        headers: {
+        "Content-Type": "application/json",
         },
     };
 };
