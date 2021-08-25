@@ -1,23 +1,23 @@
 service:
-  name: "certificationsApp"
+  name: certificationsApp
 
 plugins:
   - serverless-webpack
   - serverless-offline
   - serverless-dynamodb-local
 
-custom: 
+custom:
   webpack:
     webpackConfig: ./webpack.config.js
     includeModules: true
   dynamodb:
     stages:
-      - dev
-      - local
+     - dev
+     - local
     start:
-      port: 8000
-      inMemory: true
-      migrate: true
+     port: 8000
+     inMemory: true
+     migrate: true
 
 provider:
   name: aws
@@ -30,12 +30,12 @@ functions:
     events:
       - http:
          path: /hello
-         method: get
+         method: GET
          cors: true
 
 resources:
   Resources:
-    dbCertificateUsers:
+    dbcertificareUsers:
       Type: AWS::DynamoDB::Table
       Properties:
         TableName: users_certificates
