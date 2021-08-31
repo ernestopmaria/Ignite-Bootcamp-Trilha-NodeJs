@@ -5,6 +5,8 @@ import { document } from "src/utils/dynamodbClient";
 import * as fs from 'fs'
 import * as handlebars from "handlebars";
 import * as dayjs from "dayjs";
+import {S3} from 'aws-sdk'
+
 
 
 
@@ -33,14 +35,29 @@ const compile = async function (data:ITemplate){
 export const handle = async (event) =>{
  const {id, name, grade} = JSON.parse(event.body) as ICreateCertificate;
 
-await document.put({
-     TableName:"users_certificates",
-     Item:{
-         id,
-         name,
-         grade
-     }
- }).promise();
+ const response = await document.query({
+    TableName:"users_certificates",
+    KeyConditionExpression:"id = :id",
+    ExpressionAttributeValues:{
+        ":id":id
+    }
+ }).promise()
+
+ const userAlreadyExists = response.Items[0]
+
+ if(!userAlreadyExists){
+    await document.put({
+        TableName:"users_certificates",
+        Item:{
+            id,
+            name,
+            grade
+        }
+    }).promise();
+
+ }
+
+
 
  const medalPath = path.join(process.cwd(), "src", "templates", "selo.png")
  const medal = fs.readFileSync(medalPath, "base64")
@@ -75,12 +92,24 @@ await document.put({
 
     await browser.close()
 
+    const s3 = new S3()
+
+    await s3.putObject({
+        Bucket:"slscertificate",
+        Key:`${id}.pdf`,
+        ACL:"public-read",
+        Body:pdf,
+        ContentType:"application/pdf"
+    }).promise()
+
 
 
  return{
      statusCode:201,
      body: JSON.stringify({
-         message:"Certificate created!"
+
+         message:"Certificate created!",
+         url:`https://slscertificate.s3.sa-east-1.amazonaws.com/${id}.pdf`
      }),
      headers:{
          "Content-type": "application/json"
