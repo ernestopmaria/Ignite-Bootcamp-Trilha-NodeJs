@@ -6,6 +6,7 @@ import * as fs from 'fs'
 import * as handlebars from "handlebars";
 import * as dayjs from "dayjs";
 import {S3} from 'aws-sdk'
+import { APIGatewayProxyHandler } from "aws-lambda";
 
 
 
@@ -32,7 +33,7 @@ const compile = async function (data:ITemplate){
 }
 
 
-export const handle = async (event) =>{
+export const handle:APIGatewayProxyHandler = async (event) =>{
  const {id, name, grade} = JSON.parse(event.body) as ICreateCertificate;
 
  const response = await document.query({

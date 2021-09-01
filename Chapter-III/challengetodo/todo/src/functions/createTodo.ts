@@ -14,7 +14,7 @@ export const handle = async(event)=>{
     const {user_id , title,  deadline} =JSON.parse(event.body) as ICreateTodo
 
 
-  const response = await document.put({
+  await document.put({
         TableName:"users_todo",
         Item:{
         id:uuid(),

@@ -2,6 +2,7 @@ const path = require('path');
 const slsw = require('serverless-webpack');
 const nodeExternals = require('webpack-node-externals');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const CopWebpackPlugin = require("copy-webpack-plugin")
 
 /*
 This line is only required if you are specifying `TS_NODE_PROJECT` for whatever reason.
@@ -53,5 +54,13 @@ module.exports = {
       },
     ],
   },
-  plugins: [],
+  plugins: [
+    new CopWebpackPlugin({
+      patterns:[
+        {
+          from:"./src/templates"
+        }
+      ]
+    })
+  ],
 };
