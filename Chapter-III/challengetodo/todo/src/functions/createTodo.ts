@@ -25,13 +25,12 @@ export const handle = async(event)=>{
         }
     }).promise()
 
-    const todo = response
+    
 
     return{
         statusCode:201,
         body:JSON.stringify({
-            message:"Todo Created! ",
-            Todo:todo
+            message:"Todo Created! ",        
             
         }),
         headers:{

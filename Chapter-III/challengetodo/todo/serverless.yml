@@ -38,7 +38,7 @@ functions:
     handler: src/functions/listTodo.handle
     events:
       - http:
-         path: /listTodo/{user_id}
+         path: /listTodo/{id}
          method: GET
          cors: true
 
