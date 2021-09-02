@@ -791,6 +791,11 @@
   resolved "https://registry.yarnpkg.com/@types/retry/-/retry-0.12.1.tgz#d8f1c0d0dc23afad6dc16a9e993a0865774b4065"
   integrity sha512-xoDlM2S4ortawSWORYqsdU+2rxdh4LRW9ytc3zmT37RIKQh6IHyKwwtKhKis9ah8ol07DCkZxPt8BBvPjC6v4g==
 
+"@types/serverless@^1.78.34":
+  version "1.78.35"
+  resolved "https://registry.yarnpkg.com/@types/serverless/-/serverless-1.78.35.tgz#62b9d19448a5cd99450a35d870a24a477e2b0889"
+  integrity sha512-7taAYj0PZyHrgElIfF4fghPru/0ZJ6i+FjYZ71QQjeL1++C7InZiegIQ5LW9pRytKDsbECocgkGhUVnk55nKWQ==
+
 "@types/tough-cookie@*":
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@types/tough-cookie/-/tough-cookie-4.0.1.tgz#8f80dd965ad81f3e1bc26d6f5c727e132721ff40"
@@ -3757,7 +3762,7 @@ lodash.union@^4.6.0:
   resolved "https://registry.yarnpkg.com/lodash.union/-/lodash.union-4.6.0.tgz#48bb5088409f16f1821666641c44dd1aaae3cd88"
   integrity sha1-SLtQiECfFvGCFmZkHETdGqrjzYg=
 
-lodash@4.17.x, lodash@^4.17.0, lodash@^4.17.11, lodash@^4.17.12, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.21, lodash@^4.17.4:
+lodash@4.17.x, lodash@^4.17.0, lodash@^4.17.11, lodash@^4.17.12, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.20, lodash@^4.17.21, lodash@^4.17.4:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -5041,6 +5046,20 @@ serverless-dynamodb-local@0.2.35:
     bluebird "^3.4.6"
     dynamodb-localhost "^0.0.6"
     lodash "^4.17.0"
+
+serverless-iam-roles-per-function@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/serverless-iam-roles-per-function/-/serverless-iam-roles-per-function-3.2.0.tgz#8bb5f68e73f391ac8ff9809b8e7726e5bafba4c4"
+  integrity sha512-AXmxACHEUsDcFDcv8QNwDgn2L0brRJ7pz/phD3lFB/wQ3TtPJkorC+J7PxgFQbaWIQk15EIlU83BtKXeQoPTAg==
+  dependencies:
+    lodash "^4.17.20"
+
+serverless-iamroles@^2.1.3:
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/serverless-iamroles/-/serverless-iamroles-2.1.3.tgz#d31d779d161f4370bc80575a4ecb3be837835416"
+  integrity sha512-3hdPiCTiNO3R26rLtUeJNXDWxW+KRSL9mF/nHV5kkxgJJaXDfg5/WaZkrGclCYm5xJHk0yKu/k7/iDch1hozJw==
+  dependencies:
+    lodash "^4.17.15"
 
 serverless-offline@^8.0.0:
   version "8.0.0"
